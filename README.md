@@ -1,7 +1,7 @@
 # Sunway Smart Property Finder
 
 An academic prototype for intelligent property discovery, built as an
-independent demo — **not affiliated with or endorsed by Sunway Property.**
+independent demo, **not affiliated with or endorsed by Sunway Property.**
 Uses publicly available Sunway Property listing information as demonstration
 data only.
 
