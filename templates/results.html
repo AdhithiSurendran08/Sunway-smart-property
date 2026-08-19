@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load property_extras %}
+{% block title %}Your Matches — Sunway Smart Property{% endblock %}
+
+{% block content %}
+<div class="results-container">
+  <span class="eyebrow">Step 2 of 2</span>
+  <h1 class="page-title">Your property matches</h1>
+  <p class="page-sub">
+    Ranked by fit to what you told us.
+    <a href="{% url 'finder' %}">Change your preferences →</a>
+  </p>
+
+  {% for item in results %}
+  <div class="property-card">
+    <div class="thumb" style="--tint:{{ item.property.property_type|type_tint }}">{{ item.property.name|initials }}</div>
+    <div class="info">
+      <h2>{{ item.property.name }}</h2>
+      <p class="meta">{{ item.property.location }} · {{ item.property.property_type }} · {{ item.property.status }}</p>
+      {% if item.property.price %}<p class="price">From RM {{ item.property.price|floatformat:0 }}</p>{% endif %}
+    </div>
+    <div class="ring" style="--pct:{{ item.score }}" data-label="{{ item.score }}%"></div>
+    <a href="{% url 'property_detail' item.property.id %}" class="button ghost">View →</a>
+  </div>
+  {% empty %}
+  <div class="property-card">
+    <div class="info"><h2>No properties matched yet</h2><p class="meta">Try a higher budget or fewer filters — or <a href="{% url 'finder' %}">adjust your preferences</a>.</p></div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load property_extras %}
+{% block title %}Explore Properties — Sunway Smart Property{% endblock %}
+
+{% block content %}
+<div class="explore-container">
+  <span class="eyebrow">Full listing</span>
+  <h1 class="page-title">Explore properties</h1>
+  <p class="page-sub">Every development in our demo dataset.</p>
+
+  <div class="filter-bar">
+    <a href="{% url 'explore' %}" class="{% if not request.GET.property_type %}active{% endif %}">All types</a>
+    <a href="?property_type=Condominium" class="{% if request.GET.property_type == 'Condominium' %}active{% endif %}">Condominium</a>
+    <a href="?property_type=Serviced Apartment" class="{% if request.GET.property_type == 'Serviced Apartment' %}active{% endif %}">Serviced Apartment</a>
+    <a href="?property_type=Terrace House" class="{% if request.GET.property_type == 'Terrace House' %}active{% endif %}">Terrace House</a>
+    <a href="?property_type=Townhouse" class="{% if request.GET.property_type == 'Townhouse' %}active{% endif %}">Townhouse</a>
+    <a href="?property_type=SOHO" class="{% if request.GET.property_type == 'SOHO' %}active{% endif %}">SOHO</a>
+  </div>
+
+  <div class="explore-grid">
+    {% for property in properties %}
+    <a href="{% url 'property_detail' property.id %}" style="text-decoration:none">
+      <div class="property-card">
+        <div class="thumb" style="--tint:{{ property.property_type|type_tint }}">{{ property.name|initials }}</div>
+        <div class="info">
+          <h2>{{ property.name }}</h2>
+          <p class="meta">{{ property.location }} · {{ property.property_type }}</p>
+          {% if property.price %}<p class="price">From RM {{ property.price|floatformat:0 }}</p>{% endif %}
+          <span class="tag">{{ property.status }}</span>
+        </div>
+      </div>
+    </a>
+    {% empty %}
+    <p>No properties yet — add some in the Django admin.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

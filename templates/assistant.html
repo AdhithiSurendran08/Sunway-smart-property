@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Property Assistant — Sunway Smart Property{% endblock %}
+
+{% block content %}
+<div class="finder-container">
+  <span class="eyebrow">Rule-based, on-site assistant</span>
+  <h1 class="page-title">🤖 Property Assistant</h1>
+  <p class="page-sub">Tell me your budget, location, or priorities in plain language.</p>
+
+  <div class="card" style="background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px 28px 28px">
+    <div id="chat">
+      <div class="property-card">
+        <div class="info">👋 Hi! Tell me your budget, or ask about transport, sustainability or a specific location — e.g. <em>"RM600k near the LRT with green features"</em>.</div>
+      </div>
+    </div>
+
+    <div class="chips">
+      <button type="button" onclick="askChip('I have RM600k, what fits?')">RM600k budget</button>
+      <button type="button" onclick="askChip('Something near the LRT')">Near LRT</button>
+      <button type="button" onclick="askChip('Show me green sustainable properties')">Sustainable homes</button>
+      <button type="button" onclick="askChip('Terrace house under RM900k')">Terrace house</button>
+    </div>
+
+    <div class="chat-input-row" style="margin-top:18px">
+      <input id="message" placeholder='e.g. "RM600k, near LRT, want green features"' onkeydown="if(event.key==='Enter'){sendMessage();}">
+      <button class="button" onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <p class="meta" style="margin-top:16px;color:var(--ink-soft);font-size:13px">
+    This assistant matches your message against our property database using simple keyword rules —
+    it doesn't call an external AI model. It's built so it can be swapped for a real LLM later without changing the UI.
+  </p>
+</div>
+{% endblock %}

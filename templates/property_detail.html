@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load property_extras %}
+{% block title %}{{ property.name }} — Sunway Smart Property{% endblock %}
+
+{% block content %}
+<div class="property-detail">
+
+  <div class="detail-hero" style="background:linear-gradient(150deg,{{ property.property_type|type_tint }},#0E2A1D)">
+    <h3>{{ property.location }} · {{ property.property_type }}</h3>
+    <h1>{{ property.name }}</h1>
+    {% if property.price %}<h2 style="color:#FBFAF4">From RM {{ property.price|floatformat:0 }}</h2>{% endif %}
+    {% if property.description %}<p style="max-width:600px;opacity:.9">{{ property.description }}</p>{% endif %}
+    {% if property.freehold %}<span class="tag" style="background:rgba(255,255,255,.15);color:#FBFAF4">Freehold</span>{% endif %}
+    {% if greenre %}<span class="tag" style="background:rgba(255,255,255,.15);color:#FBFAF4;margin-left:8px">GreenRE {{ greenre.rating }} ({{ greenre.certification_type }})</span>{% endif %}
+  </div>
+
+  <h2>Property features</h2>
+  <div class="feature-list">
+    {% for feature in property.features.all %}
+      <span>✓ {{ feature.feature }}</span>
+    {% empty %}
+      <p class="meta">No features listed yet.</p>
+    {% endfor %}
+  </div>
+
+  <h2 style="margin-top:44px">🌱 Sustainability</h2>
+  {% with s=property.sustainability %}
+    {% if s %}
+    <div class="green-grid">
+      {% if s.solar_panels %}<div class="green-item">☀ Solar panels</div>{% endif %}
+      {% if s.ev_charging %}<div class="green-item">🚗 EV charging</div>{% endif %}
+      {% if s.green_space %}<div class="green-item">🌳 Green space</div>{% endif %}
+      {% if s.rainwater_harvesting %}<div class="green-item">💧 Rainwater harvesting</div>{% endif %}
+      {% if s.recycling %}<div class="green-item">♻ Recycling</div>{% endif %}
+      {% if s.water_efficient %}<div class="green-item">🚰 Water-efficient fittings</div>{% endif %}
+      {% if s.motion_sensor_lighting %}<div class="green-item">💡 Motion-sensor lighting</div>{% endif %}
+    </div>
+    {% if s.green_certification %}<p class="meta" style="margin-top:14px">Certification: {{ s.green_certification }}</p>{% endif %}
+    {% else %}
+    <p class="meta">No sustainability data added yet for this property.</p>
+    {% endif %}
+  {% endwith %}
+
+  <h2 style="margin-top:44px">🗺️ Everything around this property</h2>
+  {% for place in property.nearby_places.all %}
+  <div class="nearby">
+    <div>
+      <strong>{{ place.name }}</strong>
+      <div class="meta">{{ place.category }}</div>
+    </div>
+    <span class="tag">{{ place.distance }}</span>
+  </div>
+  {% empty %}
+  <p class="meta">No nearby places added yet.</p>
+  {% endfor %}
+
+</div>
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block title %}Sunway Smart Property — Find a property that fits you{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+  <div>
+    <span class="eyebrow">Sunway Smart Property Finder</span>
+    <h1>Find a property that fits <em>how you actually live.</em></h1>
+    <p>Tell us your budget, your priorities and how you get around — we'll match you against Sunway's township developments and show you exactly why each one fits.</p>
+    <div class="hero-actions">
+      <a href="{% url 'finder' %}" class="button">Find My Property →</a>
+      <a href="{% url 'explore' %}" class="button ghost">Browse all listings</a>
+    </div>
+  </div>
+
+  <div class="hero-art">
+    <svg viewBox="0 0 400 380" preserveAspectRatio="xMidYMax slice">
+      <rect x="30" y="180" width="46" height="180" fill="#173D2C"/>
+      <rect x="86" y="120" width="40" height="240" fill="#1F4D3A"/>
+      <rect x="136" y="200" width="34" height="160" fill="#173D2C"/>
+      <rect x="180" y="90" width="52" height="270" fill="#255A44"/>
+      <rect x="242" y="150" width="38" height="210" fill="#1F4D3A"/>
+      <rect x="290" y="60" width="60" height="300" fill="#2C6B50"/>
+      <g fill="#C98A2C" opacity="0.85">
+        <rect x="40" y="200" width="8" height="8"/><rect x="58" y="200" width="8" height="8"/>
+        <rect x="40" y="220" width="8" height="8"/><rect x="58" y="230" width="8" height="8"/>
+        <rect x="96" y="140" width="8" height="8"/><rect x="112" y="150" width="8" height="8"/>
+        <rect x="96" y="170" width="8" height="8"/><rect x="112" y="190" width="8" height="8"/>
+        <rect x="192" y="110" width="8" height="8"/><rect x="210" y="120" width="8" height="8"/>
+        <rect x="192" y="150" width="8" height="8"/><rect x="210" y="170" width="8" height="8"/>
+        <rect x="300" y="80" width="8" height="8"/><rect x="320" y="90" width="8" height="8"/>
+        <rect x="300" y="120" width="8" height="8"/><rect x="320" y="140" width="8" height="8"/>
+      </g>
+      <ellipse cx="200" cy="362" rx="200" ry="18" fill="#0E2A1D"/>
+    </svg>
+    <div class="hero-stat">
+      <div class="ring" style="--pct:61" data-label="61"></div>
+      <div>
+        <div class="num">61 Buildings</div>
+        <div class="lbl">certified green, across 2 townships</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <span class="eyebrow">Four ways in</span>
+    <h2>Everything you need to shortlist a home</h2>
+  </div>
+
+  <div class="features">
+
+    <a href="{% url 'finder' %}" style="text-decoration:none">
+      <div class="feature-card">
+        <div class="icon">🔎</div>
+        <h3>Find My Property</h3>
+        <p>Answer a few questions about budget and lifestyle — get a ranked, scored shortlist.</p>
+      </div>
+    </a>
+
+    <a href="{% url 'assistant' %}" style="text-decoration:none">
+      <div class="feature-card">
+        <div class="icon">🤖</div>
+        <h3>Property Assistant</h3>
+        <p>Chat naturally — "RM600k near the LRT" — and get instant suggestions.</p>
+      </div>
+    </a>
+
+    <a href="{% url 'sustainability' %}" style="text-decoration:none">
+      <div class="feature-card">
+        <div class="icon">🌱</div>
+        <h3>Sustainability Dashboard</h3>
+        <p>Compare solar, EV charging, rainwater harvesting and green space across developments.</p>
+      </div>
+    </a>
+
+    <a href="{% url 'explore' %}" style="text-decoration:none">
+      <div class="feature-card">
+        <div class="icon">🗺️</div>
+        <h3>Everything Around</h3>
+        <p>See transport, shopping, schools and hospitals near any property, at a glance.</p>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+{% endblock %}

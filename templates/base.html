@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}Sunway Smart Property{% endblock %}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<nav>
+  <a href="{% url 'home' %}" class="logo">
+    <img src="{% static 'img/Sunway Logo.png' %}" alt="Sunway Smart Property" class="logo-img">
+  </a>
+  <div class="nav-links">
+    <a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">Home</a>
+    <a href="{% url 'finder' %}" class="{% if request.resolver_match.url_name == 'finder' %}active{% endif %}">Find My Property</a>
+    <a href="{% url 'explore' %}" class="{% if request.resolver_match.url_name == 'explore' %}active{% endif %}">Explore</a>
+    <a href="{% url 'sustainability' %}" class="{% if request.resolver_match.url_name == 'sustainability' %}active{% endif %}">Sustainability</a>
+    <a href="{% url 'assistant' %}" class="{% if request.resolver_match.url_name == 'assistant' %}active{% endif %}">Assistant</a>
+  </div>
+</nav>
+
+{% block content %}{% endblock %}
+
+<footer>
+  Sunway Smart Property Finder — an independent academic prototype for intelligent property discovery.
+  Built with publicly available Sunway Property listing information as demonstration data.
+  Not affiliated with or endorsed by Sunway Property.
+</footer>
+
+<script src="{% static 'js/app.js' %}"></script>
+</body>
+</html>
