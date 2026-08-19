@@ -6,10 +6,10 @@ Uses publicly available Sunway Property listing information as demonstration
 data only.
 
 Four features:
-1. 🔎 **Find My Property** — scored, ranked recommendations from a form
-2. 🤖 **Property Assistant** — chat interface backed by the real database
-3. 🌱 **Sustainability Dashboard** — green features per development
-4. 🗺️ **Everything Around My Property** — transport / shopping / schools / etc.
+1.  **Find My Property** - scored, ranked recommendations from a form
+2.  **Property Assistant** - chat interface backed by the real database
+3.  **Sustainability Dashboard** - green features per development
+4.  **Everything Around My Property** - transport / shopping / schools / etc.
 
 Stack: **Django + Python** → **SQLite (default) or MySQL** → HTML/CSS/JS frontend.
 
@@ -36,16 +36,14 @@ python manage.py createsuperuser       # for the admin panel — pick your own l
 python manage.py runserver
 ```
 
-Open **http://127.0.0.1:8000/** — the whole site works immediately with SQLite,
-no database server needed. This is the fastest path for development and demoing
-on your own laptop.
+Open **http://127.0.0.1:8000/** - the whole site works immediately with SQLite,
+no database server needed.
 
 Open **http://127.0.0.1:8000/admin/** to add, edit, or remove properties.
 
 ---
 
-## 2. Switching to MySQL (recommended for your final submission, since the
-brief calls for it)
+## 2. Switching to MySQL
 
 1. Create the database:
    ```sql
@@ -116,26 +114,6 @@ To keep this current: re-visit the GreenRE listing periodically and update
 `ROWS` in `properties/management/commands/load_greenre_data.py` — ratings
 carry certification/expiry dates and get renewed.
 
-## 5. About the images
-
-I could not download real photos from sunwayproperty.com into this build —
-this environment only has network access to package registries (PyPI/npm/etc.),
-not general websites or image hosts. So instead of broken or placeholder
-`<img>` tags, **every property card uses a generated colour tile with the
-property's initials** (see `.thumb` in `style.css` and the `initials` /
-`type_tint` template filters) — this was a deliberate design choice, not a
-stopgap, and it means the site never shows a broken image.
-
-If you want real photos for your presentation:
-- Add an `image_url` to each `Property` in the admin panel (the field already
-  exists on the model) — e.g. paste a link to a photo from Sunway's own site,
-  Unsplash, or your own screenshots.
-- Then in `property_detail.html` and the card partials, replace the
-  `<div class="thumb">` block with an `<img src="{{ property.image_url }}">`
-  falling back to the initials tile when empty. That's a ~10 minute change
-  once you've picked the photos you want to use, and keeps you clear of any
-  copyright concerns from hot-linking Sunway's own marketing photography into
-  a non-official project.
 
 ## 5. Design notes
 
